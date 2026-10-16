@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Distributed Chat</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">✦</span><div><strong>Relay</strong><small>Simple Distributed Chat</small></div></div>
+      <p class="side-label">CHANNELS</p>
+      <button class="channel active" data-room="general"># general</button>
+      <button class="channel" data-room="random"># random</button>
+      <button class="channel" data-room="project"># project</button>
+      <div class="sidebar-bottom"><span class="online-dot"></span> Live connection <span id="connection-state">connecting</span></div>
+    </aside>
+    <section class="chat-panel">
+      <header class="chat-header"><div><div class="channel-title" id="room-title"># general</div><p>Real-time team conversation</p></div><div class="header-status"><span class="online-dot"></span> <span id="online-count">0 online</span></div></header>
+      <section id="join-screen" class="join-screen">
+        <div class="join-card"><div class="join-mark">✦</div><h1>Join the conversation</h1><p>Choose a display name to enter the chat.</p>
+          <form id="join-form"><label for="username">Your name</label><input id="username" maxlength="24" placeholder="e.g. Moriah" required autocomplete="nickname"><button type="submit">Join chat <span>→</span></button></form>
+          <small>Open this page in two browser windows to test live messaging.</small>
+        </div>
+      </section>
+      <section id="chat-screen" class="chat-content" hidden>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <div id="typing-indicator" class="typing-indicator"></div>
+        <form id="message-form" class="message-form"><input id="message-input" maxlength="1000" placeholder="Message #general…" autocomplete="off" aria-label="Message"><button aria-label="Send message" type="submit">↑</button></form>
+        <div class="composer-hint">Enter to send · Be kind to your teammates</div>
+      </section>
+    </section>
+    <aside class="members-panel"><div class="members-heading">PEOPLE <span id="member-count">0</span></div><div id="members-list" class="members-list"><p class="empty-members">Join a room to see who's here.</p></div><div class="about-card"><strong>About this demo</strong><p>Messages are delivered live over WebSockets. Recent messages are kept in server memory.</p></div></aside>
+  </main>
+  <script src="/socket.io/socket.io.js"></script><script src="app.js"></script>
+</body></html>
